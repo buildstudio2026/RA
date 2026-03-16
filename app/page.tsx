@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
-import { Regulation, CATEGORY_ORDER } from "@/lib/data";
+import { Regulation, CATEGORY_ORDER, regulations as staticRegulations } from "@/lib/data";
 import { Loader2, ArrowDown, ExternalLink, Calendar, Building2, Layers } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -14,31 +14,21 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
 
-  // 데이터 로딩 (API 연동)
+  // 데이터 로컬 처리
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const url = new URL("/api/regulations", window.location.origin);
-        if (searchQuery) url.searchParams.set("query", searchQuery);
-
-        const res = await fetch(url.toString());
-        const data = await res.json();
-        if (Array.isArray(data)) {
-          setRegulations(data);
-        }
-      } catch (error) {
-        console.error("Failed to fetch:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    const timer = setTimeout(() => {
-      fetchData();
-    }, 300);
-
-    return () => clearTimeout(timer);
+    setLoading(true);
+    let list = [...staticRegulations];
+    
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase().replace(/\s/g, '');
+      list = list.filter(r => 
+        r.title.toLowerCase().replace(/\s/g, '').includes(q) ||
+        r.organization.toLowerCase().replace(/\s/g, '').includes(q)
+      );
+    }
+    
+    setRegulations(list);
+    setLoading(false);
   }, [searchQuery]);
 
   // 카테고리 변경 시 페이지 상단으로 스크롤

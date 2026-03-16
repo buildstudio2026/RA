@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import RegulationCard from "@/components/RegulationCard";
-import { Regulation } from "@/lib/data";
+import { Regulation, regulations as staticRegulations } from "@/lib/data";
 import Link from "next/link";
 import { ChevronLeft, Loader2 } from "lucide-react";
 
@@ -13,31 +13,20 @@ export default function UpdatesPage() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchUpdates = async () => {
-            setLoading(true);
-            try {
-                const url = new URL("/api/regulations", window.location.origin);
-                if (searchQuery) url.searchParams.set("query", searchQuery);
-
-                const res = await fetch(url.toString());
-                const data = await res.json();
-                if (Array.isArray(data)) {
-                    // Filter only NEW or UPDATED on the client side for this page
-                    const updates = data.filter(r => r.status === "NEW" || r.status === "UPDATED");
-                    setRegulations(updates);
-                }
-            } catch (error) {
-                console.error("Failed to fetch updates:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        const timer = setTimeout(() => {
-            fetchUpdates();
-        }, 300);
-
-        return () => clearTimeout(timer);
+        setLoading(true);
+        let list = [...staticRegulations];
+        
+        if (searchQuery) {
+            const q = searchQuery.toLowerCase().replace(/\s/g, '');
+            list = list.filter(r => 
+                r.title.toLowerCase().replace(/\s/g, '').includes(q) ||
+                r.organization.toLowerCase().replace(/\s/g, '').includes(q)
+            );
+        }
+        
+        const updates = list.filter(r => r.status === "NEW" || r.status === "UPDATED");
+        setRegulations(updates);
+        setLoading(false);
     }, [searchQuery]);
 
     return (

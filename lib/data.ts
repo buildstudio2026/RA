@@ -42,7 +42,22 @@ export const SUB_CATEGORIES = [
     "연구윤리/IRB"
 ];
 
-export const regulations: Regulation[] = [
+// URL 생성 함수 (법제처)
+const generateLawUrl = (id: string, target: string) => {
+    if (target === 'law') {
+        return `https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=${id}&efYnChk=1`;
+    }
+    if (target === 'byl') {
+        const [lsiSeq, bylNo] = id.split(':');
+        return `https://www.law.go.kr/LSW/lsBylInfoPLinkR.do?lsiSeq=${lsiSeq}&bylNo=${bylNo}&bylBrNo=00&bylCls=BE&bylEfYdYn=Y`;
+    }
+    if (id.length <= 6) {
+        return `https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulLsId=${id}`;
+    }
+    return `https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=${id}&efYnChk=1`;
+};
+
+const rawRegulations = [
     { "id": "P1", "title": "약사법", "category": "법률", "subCategories": ["의약품"], "organization": "법제처", "source": "Law.go.kr", "url": "", "lastUpdated": "2026.02.12", "status": "UPDATED", "lawId": "279725", "lawTarget": "law" },
     { "id": "P2", "title": "약사법 시행령", "category": "시행령", "subCategories": ["의약품"], "organization": "법제처", "source": "Law.go.kr", "url": "", "lastUpdated": "2025.10.01", "status": "UPDATED", "lawId": "278071", "lawTarget": "law" },
     { "id": "P3", "title": "의약품 등의 안전에 관한 규칙", "category": "시행규칙", "subCategories": ["의약품"], "organization": "법제처", "source": "Law.go.kr", "url": "", "lastUpdated": "2026.03.05", "status": "UPDATED", "lawId": "284019", "lawTarget": "law" },
@@ -239,3 +254,12 @@ export const regulations: Regulation[] = [
     { "id": "MFDS_12037", "title": "유헬스케어 진단지원시스템 임상시험계획서 작성 가이드라인", "category": "가이드라인", "subCategories": ["의료기기"], "organization": "식품의약품안전처", "source": "MFDS", "url": "https://www.mfds.go.kr/brd/m_1060/view.do?seq=12037", "lastUpdated": "2017.05.25", "status": "UNCHANGED" },
     { "id": "MFDS_12029", "title": "플라즈마를 이용한 창상치료용 이학진료용기기 안전성·성능 및 임상시험계획서 평가 가이드라인", "category": "가이드라인", "subCategories": ["의료기기"], "organization": "식품의약품안전처", "source": "MFDS", "url": "https://www.mfds.go.kr/brd/m_1060/view.do?seq=12029", "lastUpdated": "2017.05.25", "status": "UNCHANGED" },
 ];
+export const regulations: Regulation[] = rawRegulations.map(item => {
+    if (!item.url && (item as any).lawId && (item as any).lawTarget) {
+        return {
+            ...item,
+            url: generateLawUrl((item as any).lawId, (item as any).lawTarget)
+        };
+    }
+    return item as any;
+}) as Regulation[];

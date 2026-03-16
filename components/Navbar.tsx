@@ -14,14 +14,14 @@ export default function Navbar({
         <nav className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md px-6 py-3">
             <div className="mx-auto flex max-w-7xl items-center justify-between gap-8">
                 <div className="flex items-center gap-2">
-                    <a href="/" className="flex items-center gap-2.5 group">
+                    <Link href="/" className="flex items-center gap-2.5 group">
                         <div className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-600 text-white shadow-sm group-hover:bg-emerald-700 transition-colors">
                             <ShieldCheck size={20} />
                         </div>
                         <span className="text-lg font-bold tracking-tight text-slate-900">
                             임상시험규정.zip
                         </span>
-                    </a>
+                    </Link>
                 </div>
 
                 <div className="relative flex flex-1 max-w-xl items-center group">
