@@ -21,7 +21,7 @@ export const CATEGORIES = [
     "시행규칙",
     "고시",
     "가이드라인",
-    "국제법"
+    "국제 가이드라인"
 ];
 
 export const CATEGORY_ORDER: Record<string, number> = {
@@ -30,7 +30,7 @@ export const CATEGORY_ORDER: Record<string, number> = {
     "시행규칙": 3,
     "고시": 4,
     "가이드라인": 5,
-    "국제법": 6,
+    "국제 가이드라인": 6,
 };
 
 export const SUB_CATEGORIES = [
@@ -66,12 +66,12 @@ const rawRegulations = [
     { "id": "P12", "title": "임상시험검체분석 관리기준", "category": "고시", "subCategories": ["의약품"], "organization": "식품의약품안전처", "source": "Law.go.kr", "url": "", "lastUpdated": "2022.08.04", "status": "UNCHANGED", "lawId": "234035", "lawTarget": "admrul" },
     { "id": "P9", "title": "의약품 임상시험 계획 승인에 관한 규정", "category": "고시", "subCategories": ["의약품"], "organization": "법제처", "source": "Law.go.kr", "url": "", "lastUpdated": "2024.01.16", "status": "UNCHANGED", "lawId": "208465", "lawTarget": "admrul" },
     { "id": "P4", "title": "의약품 임상시험 관리기준 (KGCP)", "category": "시행규칙", "subCategories": ["의약품"], "organization": "법제처", "source": "Law.go.kr", "url": "", "lastUpdated": "2026.03.05", "status": "UPDATED", "lawId": "284019:0004", "lawTarget": "byl" },
-    { "id": "P8", "title": "ICH E6(R3) Step 4 Final Guideline", "category": "국제법", "subCategories": ["의약품"], "organization": "ICH", "source": "ICH", "url": "https://database.ich.org/sites/default/files/ICH_E6%28R3%29_Step4_FinalGuideline_2025_0106.pdf", "lastUpdated": "2025.01.06", "status": "NEW" },
+    { "id": "P8", "title": "ICH E6(R3) Step 4 Final Guideline", "category": "국제 가이드라인", "subCategories": ["의약품"], "organization": "ICH", "source": "ICH", "url": "https://database.ich.org/sites/default/files/ICH_E6%28R3%29_Step4_FinalGuideline_2025_0106.pdf", "lastUpdated": "2025.01.06", "status": "NEW" },
     { "id": "M1", "title": "의료기기법", "category": "법률", "subCategories": ["의료기기"], "organization": "법제처", "source": "Law.go.kr", "url": "", "lastUpdated": "2025.08.01", "status": "UPDATED", "lawId": "268885", "lawTarget": "law" },
     { "id": "M2", "title": "의료기기법 시행령", "category": "시행령", "subCategories": ["의료기기"], "organization": "법제처", "source": "Law.go.kr", "url": "", "lastUpdated": "2025.08.01", "status": "UPDATED", "lawId": "272851", "lawTarget": "law" },
     { "id": "M3", "title": "의료기기법 시행규칙", "category": "시행규칙", "subCategories": ["의료기기"], "organization": "법제처", "source": "Law.go.kr", "url": "", "lastUpdated": "2025.10.31", "status": "UPDATED", "lawId": "279365", "lawTarget": "law" },
     { "id": "M4", "title": "의료기기 임상시험 기본문서 관리에 관한 규정", "category": "고시", "subCategories": ["의료기기"], "organization": "법제처", "source": "Law.go.kr", "url": "", "lastUpdated": "2016.10.17", "status": "UNCHANGED", "lawId": "2100000062409", "lawTarget": "admrul" },
-    { "id": "M5", "title": "ISO 14155 Clinical investigation of medical devices", "category": "국제법", "subCategories": ["의료기기"], "organization": "ISO", "source": "ISO", "url": "https://www.iso.org/standard/45557.html", "lastUpdated": "2020.07.01", "status": "UNCHANGED" },
+    { "id": "M5", "title": "ISO 14155 Clinical investigation of medical devices", "category": "국제 가이드라인", "subCategories": ["의료기기"], "organization": "ISO", "source": "ISO", "url": "https://www.iso.org/standard/45557.html", "lastUpdated": "2020.07.01", "status": "UNCHANGED" },
     { "id": "M6", "title": "의료기기 임상시험계획 승인에 관한 규정", "category": "고시", "subCategories": ["의료기기"], "organization": "법제처", "source": "Law.go.kr", "url": "", "lastUpdated": "2023.02.14", "status": "UNCHANGED", "lawId": "2100000219234", "lawTarget": "admrul" },
     { "id": "M7", "title": "의료기기 임상시험기관 지정에 관한 규정", "category": "고시", "subCategories": ["의료기기"], "organization": "법제처", "source": "Law.go.kr", "url": "", "lastUpdated": "2017.06.27", "status": "UNCHANGED", "lawId": "2100000090726", "lawTarget": "admrul" },
     { "id": "M8", "title": "의료기기 부작용 등 안전성 정보 관리에 관한 규정", "category": "고시", "subCategories": ["의료기기"], "organization": "법제처", "source": "Law.go.kr", "url": "", "lastUpdated": "2022.11.10", "status": "UNCHANGED", "lawId": "2100000211239", "lawTarget": "admrul" },
