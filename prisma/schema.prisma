@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Regulation {
+  id           String   @id @default(cuid())
+  title        String
+  category     String
+  organization String
+  source       String
+  url          String
+  lastChecked  DateTime @default(now())
+  lastUpdated  DateTime
+  status       String   // "NEW", "UPDATED", "UNCHANGED"
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
